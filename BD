@@ -1,0 +1,46 @@
+set global time_zone = '+8:00';
+
+-- borra la bd si existe
+DROP DATABASE IF EXISTS DAWI_CL2_CarpioAna;
+-- creamos la bd
+CREATE DATABASE DAWI_CL2_CarpioAna;
+-- activamos la bd
+USE DAWI_CL2_CarpioAna;
+
+create table area(
+ codArea int NOT NULL AUTO_INCREMENT COMMENT 'Codigo Area',
+ nomArea varchar(100) NOT NULL COMMENT 'Nombre de Area',
+ jefeArea varchar(10) NOT NULL COMMENT 'Jefe de Area',
+ PRIMARY KEY (`codArea`)
+);
+insert into area values (1, 'Contabilidad', 'JefeCont');
+insert into area values (2, 'Administracion', 'JefeAdmi');
+insert into area values (3, 'Sistemas','JefeSistem');
+
+create table personal(
+codTrabajador int NOT NULL AUTO_INCREMENT COMMENT 'Codigo de Trabajador',
+ nombre varchar(100) NOT NULL COMMENT 'Nombre de Trabajador',
+ Sueldo varchar(10) NOT NULL COMMENT 'Sueldo de Trabajador',
+ codigoArea int NOT NULL COMMENT 'Codigo de Area',
+ PRIMARY KEY (`codTrabajador`),
+ FOREIGN KEY (codigoArea) REFERENCES area(codArea)
+);
+
+insert into personal values (1, 'Alberto Montoya','1500','2');
+insert into personal values (2, 'Claudia Herrera','1800','3');
+insert into personal values (3, 'Juan Torres','4300','3');
+insert into personal values (4, 'Benjamin Ramos','2000','1');
+insert into personal values (5, 'Oscar Silva','1300','3');
+insert into personal values (6, 'Andrea Lopez','3400','3');
+insert into personal values (7, 'Luis Carpio','2300','1');
+insert into personal values (8, 'Alisson Corrales','1500','2');
+
+
+
+select area.*, personal.*
+from area ,personal 
+where area.codArea = personal.codigoArea;
+
+select p.codTrabajador,p.nombre,p.sueldo,a.nomArea,a,jefeArea  
+from area a,personal p 
+where area.codArea = personal.codigoArea;

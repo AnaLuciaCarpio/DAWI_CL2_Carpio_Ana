@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title th:text="${titulo}"></title>
+</head>
+<body>
+<div class="container py-4">
+<h1 class="color-rojo"
+th:text="${titulo}"></h1>
+<h2 class="color-azul">Listar, 
+Personal</h2>
+<div th:if="${personal?.idP == 0}">No pudimos
+recuperar la informacion del personal, verifica tu
+BD</div>
+<table th:if="${personal?.idP != 0}">
+<thead>
+<tr>
+<th>Numero</th>
+<th>Nombre</th>
+<th>Código</th>
+<th>Sueldo</th>
+<th>Nombre del área</th>
+<th>Jefe del area</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td
+th:text="${personal?.idP}"></td>
+<td
+th:text="${personal?.nombreP}"></td>
+<td
+th:text="${personal?.id}"></td>
+<td
+th:text="${personal?.sueldo}"></td>
+<td
+th:text="${personal?.nombre}"></td>
+<td
+th:text="${personal?.jefe}"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</body>
+</html>
